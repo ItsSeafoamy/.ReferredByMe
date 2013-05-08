@@ -1,0 +1,40 @@
+name: ReferredByMe
+main: uk.co.abyxstudioz.referredbyme.ReferredByMe
+version: 0.5
+
+commands:
+   refer:
+      description: Say who referred you to the server. Can only be used once.
+      usage: /refer <player>
+      permission: ReferredByMe.refer
+      permission-message: You don't have the permission to execute this command. (ReferredByMe.refer)
+   referreload:
+      description: Reloads all settings.
+      usage: /referreload
+      permission: ReferredByMe.reload
+      permission-message: You don't have the permission to execute this command. (ReferredByMe.reload)
+   referinfo:
+      description: Checks ReferredByMe info on a specified player, or yourself.
+      usage: /referinfo [Player]
+      permission: ReferredByMe.info
+      permission-message: You don't have the permission to execute this command. (ReferredByMe.info)
+   referversion:
+      description: Information on the current version. Make sure to stay up to date!
+      usage: /referversion
+      permission: ReferredByMe.version
+      permission-message: You don't have the permission to execute this command. (ReferredByMe.version)
+   referleader:
+      description: Checks which user has the highest amount of referrals. Do /referinfo <name> for more information on that user.
+      usage: /referleader [Rank]
+      permission: ReferredByMe.leader
+      permission-message: You don't have the permission to execute this command. (ReferredByMe.leader)
+   referrank:
+      description: Checks which user has the highest amount of referrals. Do /referinfo <name> for more information on that user.
+      usage: /referrank [Rank]
+      permission: ReferredByMe.leader
+      permission-message: You don't have the permission to execute this command. (ReferredByMe.leader)
+   referconfig:
+      description: Checks or edits the config file in-game.
+      usage: /referconfig <path:help> [<Variable> <String:Int:Boolean>]
+      permission: ReferredByMe.config
+      permission-message: You don't have the permission to execute this command. (ReferredByMe.config)
