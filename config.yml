@@ -60,7 +60,9 @@ Rewards:
   #E.g. If set to 5, the user will get a reward at 5 referrals, 10 referrals, 15 etc.
   #Set to 0 to disable.
   Recurring: 0
-  Commandr: "give {target} 264 1"
+  Commandr: 
+  - "give {target} 264 1"
+  - "give {player} 264 1"
 ################################################################################
 #A list of all players, who referred them, and how many people they have referred.
 Players:
