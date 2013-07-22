@@ -175,14 +175,23 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 										    String YouReferred = ReferredByMe.this.getConfig().getString("YouReferred").replace("{player}", player.getPlayerListName().toLowerCase());
 											target.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + YouReferred.replace("{target}", args[0].toLowerCase()));
 										} if (ReferredByMe.this.getConfig().getInt("Players." + args[0].toLowerCase() + ".Referrals") == ReferredByMe.this.getConfig().getInt("Rewards.Tier1")){
-											String Command1 = ReferredByMe.this.getConfig().getString("Rewards.Command1").replace("{player}", player.getPlayerListName().toLowerCase());
-											Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), Command1.replace("{target}", args[0].toLowerCase()));
+                                            List<String> Command1 = ReferredByMe.this.getConfig().getStringList("Rewards.Command1");
+                                            for(String command:Command1){
+                                                command = command.replace("{player}", player.getPlayerListName().toLowerCase());
+                                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command.replace("{target}", args[0].toLowerCase()));
+                                            }
 										} if (ReferredByMe.this.getConfig().getInt("Players." + args[0].toLowerCase() + ".Referrals") == ReferredByMe.this.getConfig().getInt("Rewards.Tier2")){
-											String Command2 = ReferredByMe.this.getConfig().getString("Rewards.Command2").replace("{player}", player.getPlayerListName().toLowerCase());
-											Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), Command2.replace("{target}", args[0].toLowerCase()));
+                                            List<String> Command2 = ReferredByMe.this.getConfig().getStringList("Rewards.Command2");
+                                            for(String command:Command2){
+                                                command = command.replace("{player}", player.getPlayerListName().toLowerCase());
+                                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command.replace("{target}", args[0].toLowerCase()));
+                                            }
 										} if (ReferredByMe.this.getConfig().getInt("Players." + args[0].toLowerCase() + ".Referrals") == ReferredByMe.this.getConfig().getInt("Rewards.Tier3")){
-											String Command3 = ReferredByMe.this.getConfig().getString("Rewards.Command3").replace("{player}", player.getPlayerListName().toLowerCase());
-											Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), Command3.replace("{target}", args[0].toLowerCase()));
+                                            List<String> Command3 = ReferredByMe.this.getConfig().getStringList("Rewards.Command3");
+                                            for(String command:Command3){
+                                                command = command.replace("{player}", player.getPlayerListName().toLowerCase());
+                                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command.replace("{target}", args[0].toLowerCase()));
+                                            }
                                         } if (ReferredByMe.this.getConfig().getInt("Rewards.Recurring") != 0){
                                             if ((ReferredByMe.this.getConfig().getInt("Players." + args[0].toLowerCase() + ".Referrals") / ReferredByMe.this.getConfig().getInt("Rewards.Recurring")) * ReferredByMe.this.getConfig().getInt("Rewards.Recurring") == ReferredByMe.this.getConfig().getInt("Players." + args[0] + ".Referrals")){
                                                 List<String> Commandr = ReferredByMe.this.getConfig().getStringList("Rewards.Commandr");
