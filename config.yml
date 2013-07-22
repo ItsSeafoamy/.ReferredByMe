@@ -46,16 +46,22 @@ sign: "Sign successfully registered."
 #The reward tiers are how many referrals are needed to receive the reward
 #Set the reward tiers to '-1' to disable that tier.
 #The reward commands are the commands that will be executed from the console when the player refers a certain number of players.
-#E.g. In the example below, when a user(LaXynd) refers 5 people, then the console will execute the command: manuadd laxynd refer1
+#E.g. In the example below, when a user(LaXynd) refers 5 people, then the console will execute the command: manuadd laxynd refer1 AND give laxynd 264 1
 #Assuming you have group manager installed, this will promote the user(LaXynd) to the group: Refer1.
 #Some commands require the user to be online, such as the 'give' command. If the user is not online, then he/she won't be able to receive the reward at all.
 Rewards:
   Tier1: 5
-  Command1: "manuadd {target} refer1"
+  Command1:
+  - "manuadd {target} refer1"
+  - "give {target} 264 1"
   Tier2: 10
-  Command2: "manuadd {target} refer2"
+  Command2:
+  - "manuadd {target} refer2"
+  - "give {target} 264 1"
   Tier3: -1
-  Command3: "give {target} 264 64"
+  Command3:
+  - "give {target} 264 1"
+  - "give {player} 264 1"
   #Recurring rewards will occur every time someone refers the specified referrals.
   #E.g. If set to 5, the user will get a reward at 5 referrals, 10 referrals, 15 etc.
   #Set to 0 to disable.
