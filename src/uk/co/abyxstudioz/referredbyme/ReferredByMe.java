@@ -2,7 +2,6 @@ package uk.co.abyxstudioz.referredbyme;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
@@ -17,21 +16,26 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReferredByMe extends JavaPlugin implements Listener{
+	
+	boolean update;
 
 	@Override
 	public void onEnable(){
 		this.saveDefaultConfig();
 		getLogger().info("ReferredByMe has been enabled.");
 		getLogger().info("Author: LaXynd");
-		getLogger().info("Version: V0.5");
+		getLogger().info("Version: Dev. V0.6");
 		getServer().getPluginManager().registerEvents(this, this);
-		if (ReferredByMe.this.getConfig().getDouble("Version") != 0.5){
-			ReferredByMe.this.getConfig().set("Version", 0.5);
+		if (ReferredByMe.this.getConfig().getDouble("Version") != 0.6){
+			ReferredByMe.this.getConfig().set("Version", 0.6);
+			update = true;
 			this.saveConfig();
+		} else {
+			update = false;
 		}
 	}
 
@@ -78,6 +82,9 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 			String ReferElse = ReferredByMe.this.getConfig().getString("ReferElse").replace("{player}", player.getPlayerListName().toLowerCase());
 			player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + ReferElse);
 		}
+		if (update && player.isOp()){
+			player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.DARK_RED + "You are using Config Version " + ChatColor.RED + "0.5" + ChatColor.DARK_RED + " with ReferredByMe Version " + ChatColor.RED + "0.6" + ChatColor.DARK_RED + ". Please update your config to follow " + ChatColor.WHITE + "http://dev.bukkit.org/bukkit-plugins/referredbyme/pages/example-config/");
+		}
 	}
 
 	@EventHandler
@@ -89,11 +96,11 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 
 	@EventHandler
 	public void onSignChange(SignChangeEvent event) {
-		if(event.getLine(0).contains("[referrank]")){
-			event.setLine(0, "�1[referrank]");
-			event.setLine(2, "�4" + ReferredByMe.this.getConfig().getString("Rank." + event.getLine(1) + ".Name"));
-			event.setLine(3, "�4" + ReferredByMe.this.getConfig().getString("Rank." + event.getLine(1) + ".Referrals"));
-			event.setLine(1, "�2" + event.getLine(1));
+		if(event.getLine(0).equalsIgnoreCase("[referrank]")){
+			event.setLine(0, "§1[referrank]");
+			event.setLine(2, "§4" + ReferredByMe.this.getConfig().getString("Rank." + event.getLine(1) + ".Name"));
+			event.setLine(3, "§4" + ReferredByMe.this.getConfig().getString("Rank." + event.getLine(1) + ".Referrals"));
+			event.setLine(1, "§2" + event.getLine(1));
 		}
 	}
 	@EventHandler
@@ -105,11 +112,11 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 				BlockState state = block.getState();
 				Sign sign = (Sign)state;
 				String signline0 = sign.getLine(0);
-				if(signline0.contains("[referrank]")){
-					sign.setLine(0, "�1[referrank]");
-					sign.setLine(2, "�4" + ReferredByMe.this.getConfig().getString("Rank." + sign.getLine(1).replace("�2","") + ".Name"));
-					sign.setLine(3, "�4" + ReferredByMe.this.getConfig().getString("Rank." + sign.getLine(1).replace("�2","") + ".Referrals"));
-					sign.setLine(1, "�2" + sign.getLine(1).replace("�2", ""));
+				if(signline0.equalsIgnoreCase("[referrank]")){
+					sign.setLine(0, "§1[referrank]");
+					sign.setLine(2, "§4" + ReferredByMe.this.getConfig().getString("Rank." + sign.getLine(1).replace("§2","") + ".Name"));
+					sign.setLine(3, "§4" + ReferredByMe.this.getConfig().getString("Rank." + sign.getLine(1).replace("§2","") + ".Referrals"));
+					sign.setLine(1, "§2" + sign.getLine(1).replace("§2", ""));
 					player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Updated");
 					sign.update(true);
 				}
@@ -240,6 +247,7 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 				this.reloadConfig();
 				String reload = ReferredByMe.this.getConfig().getString("reload");
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + reload);
+				update = false;
 			}else {
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ReferredByMe.this.getConfig().getString("arguments"));
 				return false;
