@@ -83,4 +83,4 @@ Rank:
 IpCheck: true
 #The version number. DO NOT CHANGE!
 #This is to check if your config file is up to date with the current version, and update it, if not.
-Version: 0.5
+Version: 0.6
