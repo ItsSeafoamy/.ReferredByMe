@@ -284,10 +284,10 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 		}else if (cmd.getName().equalsIgnoreCase("referversion")){
 			if (args.length == 0){
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Author: " + ChatColor.GRAY + "LaXynd");
-				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Version: " + ChatColor.GRAY + "V0.5");
+				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Version: " + ChatColor.GRAY + "V0.6");
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Build Type: " + ChatColor.YELLOW + "Development");
-				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "For Minecraft Version: " + ChatColor.GRAY + "1.5.2");
-				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Released: " + ChatColor.GRAY + "06/05/2013");
+				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "For Minecraft Version: " + ChatColor.GRAY + "1.6.2");
+				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Released: " + ChatColor.RED + "Unofficial/Unreleased");
 			} else {
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ReferredByMe.this.getConfig().getString("arguments"));
 			}
@@ -343,7 +343,7 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + args[0] + ": " + ReferredByMe.this.getConfig().getString(args[0]));
 			}if (args.length == 3){
 				if (args[2].equalsIgnoreCase("String")){
-					ReferredByMe.this.getConfig().set(args[0],args[1]);
+					ReferredByMe.this.getConfig().set(args[0],args[1].replace("_"," ");
 					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "The variable " + args[0] + " has now been set with the value " + args[1]);
 				} if (args[2].equalsIgnoreCase("Int")){
 					try {
