@@ -1,82 +1,87 @@
+#########################################
 ## Configuration file for ReferredByMe ##
-############################################
+#########################################
 
 ##Messages##
 #Changing messages will not remove the [ReferredByMe] prefix
 #{player} - will be replace by the name of the user executing the command, or the player that joined the game.
-#{target} - is the targeted player. E.g., if someone uses /refer LaXynd, then {target} would be replace by LaXynd
+#{target} - is the targeted player. E.g., if SomeoneRandom uses /refer LaXynd, then {target} would be replaced by LaXynd and {player} would be replaced by SomeoneRandom
+Messages:
+  #The message that will be displayed when a user joins for the first time.#
+  WelcomeMessage: 'Welcome, {player}!'
 
-#The message that will be displayed when a user joins for the first time.#
-WelcomeMessage: "Welcome, {player}!"
+  #The message that tells the user how to say who referred them#
+  WhoReferred: 'If you were referred to this server from another user, do /refer <player>'
 
-#The message that tells the user how to say who referred them#
-WhoReferred: "If you were referred to this server from another user, do /refer <player>"
+  #The message that tells the user how to refer someone#
+  ReferElse: 'Want some awesome rewards? Get another player to join and have them do /refer {player}'
 
-#The message that tells the user how to refer someone#
-ReferElse: "Want some awesome rewards? Get another player to join and have them do /refer {player}"
+  #Not the correct number of arguments#
+  arguments: 'Review your argument count!'
 
-#Not the correct number of arguments#
-arguments: "Review your argument count!"
+  #/refer <target>#
+  Referred: 'You were referred by {target}. Want some awesome rewards? Get another player to join and have them do /refer {player}'
 
-#/refer <target>#
-Referred: "You were referred by {target}. Want some awesome rewards? Get another player to join and have them do /refer {player}"
+  #Already been referred#
+  #Note: single quotes are escaped by using two single quotes ('')
+  AlreadyReferred: 'You have already been referred, you can''t be referred again!'
 
-#Already been referred#
-AlreadyReferred: "You have already been referred, you can't be referred again!"
+  #If the user is claiming to have been referred by someone, but has already referred someone.#
+  ReferLoop: 'You can''t be referred by someone after already referring someone'
 
-#If the user is claiming to have been referred by someone, but has already referred someone.#
-ReferLoop: "You can't be referred by someone after already referring someone"
+  #Message the referrer gets when someone says they referred them#
+  YouReferred: 'Thanks for referring {player} to the server!'
 
-#Message the referrer gets when someone says they referred them#
-YouReferred: "Thanks for referring {player} to the server!"
+  #Tried to refer themself#
+  ReferSelf: 'You can''t refer yourself, you silly goose!'
 
-#Tried to refer themself#
-ReferSelf: "You can't refer yourself, you silly goose!"
+  #User not found#
+  NotFound: '{target} not found.'
 
-#User not found#
-NotFound: "User not found."
+  #Reload Config - Remember to reload whenever you edit this file. (/referreload)
+  reload: 'All settings were reloaded!'
 
-#Reload Config - Remember to reload whenever you edit this file. (/referreload)
-reload: "All settings were reloaded!"
-
-#Message when player creates [referrank] sign
-sign: "Sign successfully registered."
 ################################################################################
 #All the rewards are listed here. 
 #The reward tiers are how many referrals are needed to receive the reward
-#Set the reward tiers to '-1' to disable that tier.
 #The reward commands are the commands that will be executed from the console when the player refers a certain number of players.
 #E.g. In the example below, when a user(LaXynd) refers 5 people, then the console will execute the command: manuadd laxynd refer1 AND give laxynd 264 1
 #Assuming you have group manager installed, this will promote the user(LaXynd) to the group: Refer1.
 #Some commands require the user to be online, such as the 'give' command. If the user is not online, then he/she won't be able to receive the reward at all.
 Rewards:
-  Tier1: 5
-  Command1:
-  - "manuadd {target} refer1"
-  - "give {target} 264 1"
-  Tier2: 10
-  Command2:
-  - "manuadd {target} refer2"
-  - "give {target} 264 1"
-  Tier3: -1
-  Command3:
-  - "give {target} 264 1"
-  - "give {player} 264 1"
+  #The number of tiers used
+  Tiers: 3
+  Lol:
+    Referrals: 5
+    Command:
+    - 'manuadd {target} Refer1'
+    - 'give {target} 264 1'
+  '2':
+    Referrals: 10
+    Command:
+    - 'manuadd {target} Refer2'
+    - 'give {target} 264 5'
+  '3':
+    Referrals: 15
+    Command:
+    - 'give {target} 264 5'
+    - 'eco give {target} 50'
   #Recurring rewards will occur every time someone refers the specified referrals.
   #E.g. If set to 5, the user will get a reward at 5 referrals, 10 referrals, 15 etc.
   #Set to 0 to disable.
-  Recurring: 0
-  Commandr: 
-  - "give {target} 264 1"
-  - "give {player} 264 1"
+  Recurring:
+    Referrals: 1
+    Command:
+    - 'give {target} 264 1'
+    - 'give {plater} 264 1'
 ################################################################################
 #A list of all players, who referred them, and how many people they have referred.
 Players:
-#Will be automatically set by the plugin when people use /refer
+#Will be automatically set by the plugin
 ###############################################################################
 #The Leaderboard. The ranks of each user.
 Rank:
-#Should be left untouched.
+#Should be left untouched. Again, automatically set by the plugin
 ###############################################################################
 #Check if both players have the same IP.
 #It is recommended you leave this to true when running servers in offline mode.
