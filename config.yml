@@ -51,7 +51,7 @@ Messages:
 Rewards:
   #The number of tiers used
   Tiers: 3
-  Lol:
+  '1':
     Referrals: 5
     Command:
     - 'manuadd {target} Refer1'
