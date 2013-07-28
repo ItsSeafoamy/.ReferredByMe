@@ -41,13 +41,20 @@ Messages:
   #Reload Config - Remember to reload whenever you edit this file. (/referreload)
   reload: 'All settings were reloaded!'
 
+  #Tells a user they have unclaimed prizes
+  Claimable: 'You have unclaimed rewards. Type /referclaim to claim them.'
+  
+  #User claimed their rewards
+  Claimed: 'You have claimed your rewards.'
+  
+  #User had no unclaimable rewards
+  NotClaimed: 'No unclaimed rewards found.'
 ################################################################################
 #All the rewards are listed here. 
 #The reward tiers are how many referrals are needed to receive the reward
 #The reward commands are the commands that will be executed from the console when the player refers a certain number of players.
 #E.g. In the example below, when a user(LaXynd) refers 5 people, then the console will execute the command: manuadd laxynd refer1 AND give laxynd 264 1
 #Assuming you have group manager installed, this will promote the user(LaXynd) to the group: Refer1.
-#Some commands require the user to be online, such as the 'give' command. If the user is not online, then he/she won't be able to receive the reward at all.
 Rewards:
   #The number of tiers used
   Tiers: 3
@@ -73,7 +80,7 @@ Rewards:
     Referrals: 1
     Command:
     - 'give {target} 264 1'
-    - 'give {plater} 264 1'
+    - 'give {player} 264 1'
 ################################################################################
 #A list of all players, who referred them, and how many people they have referred.
 Players:
@@ -88,4 +95,4 @@ Rank:
 IpCheck: true
 #The version number. DO NOT CHANGE!
 #This is to check if your config file is up to date with the current version, and update it, if not.
-Version: 0.6
+Version: 0.7
