@@ -28,7 +28,7 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 		this.saveDefaultConfig();
 		getLogger().info("ReferredByMe has been enabled.");
 		getLogger().info("Author: LaXynd");
-		getLogger().info("Version: Dev. V0.7");
+		getLogger().info("Version: V0.7");
 		getServer().getPluginManager().registerEvents(this, this);
 		if (ReferredByMe.this.getConfig().getDouble("Version") < 0.6){
 			update = true;
@@ -47,40 +47,40 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 	@EventHandler
 	public void playerJoin(PlayerJoinEvent evt) {
 		Player player = evt.getPlayer();
-		if (!ReferredByMe.this.getConfig().getBoolean("Players." + player.getName().toLowerCase().toLowerCase() + ".Referred")){
-			if (ReferredByMe.this.getConfig().getString("Players." + player.getName().toLowerCase().toLowerCase() + ".IP") == null){
+		if (!ReferredByMe.this.getConfig().getBoolean("Players." + player.getName().toLowerCase() + ".Referred")){
+			if (ReferredByMe.this.getConfig().getString("Players." + player.getName().toLowerCase() + ".IP") == null){
 				if (!ReferredByMe.this.getConfig().getString("Messages.WelcomeMessage").equals("")){
-					String WelcomeMessage = ReferredByMe.this.getConfig().getString("Messages.WelcomeMessage").replace("{player}", player.getName().toLowerCase().toLowerCase());
+					String WelcomeMessage = ReferredByMe.this.getConfig().getString("Messages.WelcomeMessage").replace("{player}", player.getName().toLowerCase());
 					player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + WelcomeMessage);
-					ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase().toLowerCase() + ".IP", "'" + IP + "'");
+					ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase() + ".IP", "'" + IP + "'");
 				}
 				this.saveConfig();
 			}
 			if (!ReferredByMe.this.getConfig().getString("Messages.WhoReferred").equals("")){
-				String WhoReferred = ReferredByMe.this.getConfig().getString("Messages.WhoReferred").replace("{player}", player.getName().toLowerCase().toLowerCase());
+				String WhoReferred = ReferredByMe.this.getConfig().getString("Messages.WhoReferred").replace("{player}", player.getName().toLowerCase());
 				player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + WhoReferred);
 			}
 		}
-		if (ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Rank") == 0){
+		if (ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Rank") == 0){
 			ReferredByMe.this.getConfig().set("Rank.Ranks", ReferredByMe.this.getConfig().getInt("Rank.Ranks") + 1);
-			ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase().toLowerCase() + ".Rank", ReferredByMe.this.getConfig().getInt("Rank.Ranks"));
-			ReferredByMe.this.getConfig().set("Rank." + ReferredByMe.this.getConfig().getInt("Rank.Ranks") + ".Name", player.getName().toLowerCase().toLowerCase());
-			ReferredByMe.this.getConfig().set("Rank." + ReferredByMe.this.getConfig().getInt("Rank.Ranks") + ".Referrals", ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Referrals"));
+			ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase() + ".Rank", ReferredByMe.this.getConfig().getInt("Rank.Ranks"));
+			ReferredByMe.this.getConfig().set("Rank." + ReferredByMe.this.getConfig().getInt("Rank.Ranks") + ".Name", player.getName().toLowerCase());
+			ReferredByMe.this.getConfig().set("Rank." + ReferredByMe.this.getConfig().getInt("Rank.Ranks") + ".Referrals", ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Referrals"));
 			this.saveConfig();
 		}
-		int Rank = ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Rank");
+		int Rank = ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Rank");
 		int Rankers = Rank - 1;
-		if (ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Referrals") >= ReferredByMe.this.getConfig().getInt("Rank." + Rankers + ".Referrals") && Rankers != 0){
+		if (ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Referrals") >= ReferredByMe.this.getConfig().getInt("Rank." + Rankers + ".Referrals") && Rankers != 0){
 			ReferredByMe.this.getConfig().set("Rank." + Rank + ".Name", ReferredByMe.this.getConfig().getString("Rank." + Rankers + ".Name"));
 			ReferredByMe.this.getConfig().set("Rank." + Rank + ".Referrals", ReferredByMe.this.getConfig().getInt("Rank." + Rankers + ".Referrals"));
 			ReferredByMe.this.getConfig().set("Players." + ReferredByMe.this.getConfig().getString("Rank." + Rankers + ".Name") + ".Rank", Rank);
-			ReferredByMe.this.getConfig().set("Rank." + Rankers + ".Name", player.getName().toLowerCase().toLowerCase());
-			ReferredByMe.this.getConfig().set("Rank." + Rankers + ".Referrals", ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Referrals"));
-			ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase().toLowerCase() + ".Rank", Rankers);
+			ReferredByMe.this.getConfig().set("Rank." + Rankers + ".Name", player.getName().toLowerCase());
+			ReferredByMe.this.getConfig().set("Rank." + Rankers + ".Referrals", ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Referrals"));
+			ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase() + ".Rank", Rankers);
 			this.saveConfig();
 		}
 		if (!ReferredByMe.this.getConfig().getString("Messages.ReferElse").equals("")){
-			String ReferElse = ReferredByMe.this.getConfig().getString("Messages.ReferElse").replace("{player}", player.getName().toLowerCase().toLowerCase());
+			String ReferElse = ReferredByMe.this.getConfig().getString("Messages.ReferElse").replace("{player}", player.getName().toLowerCase());
 			player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + ReferElse);
 		}
 		if (update && player.isOp()){
@@ -139,7 +139,7 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 		if(cmd.getName().toLowerCase().equalsIgnoreCase("refer")){
 			Player player = (Player) sender;
 			if (args.length != 1) {
-				String arguments =  ReferredByMe.this.getConfig().getString("Messages.arguments").replace("{player}", player.getName().toLowerCase().toLowerCase());
+				String arguments =  ReferredByMe.this.getConfig().getString("Messages.arguments").replace("{player}", player.getName().toLowerCase());
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + arguments);
 				return false;
 			} 
@@ -147,14 +147,14 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 				sender.sendMessage("Cannot be executed from the console.");
 				return false;
 			} else {
-				if (!ReferredByMe.this.getConfig().getBoolean("Players." + player.getName().toLowerCase().toLowerCase() + ".Referred")){
-					if (ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Referrals") == 0){
+				if (!ReferredByMe.this.getConfig().getBoolean("Players." + player.getName().toLowerCase() + ".Referred")){
+					if (ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Referrals") == 0){
 						Player target = Bukkit.getServer().getPlayer(args[0]);
-						if (!player.getName().toLowerCase().toLowerCase().equalsIgnoreCase(args[0].toLowerCase())){
+						if (!player.getName().toLowerCase().equalsIgnoreCase(args[0].toLowerCase())){
 							if (ReferredByMe.this.getConfig().getString("Players." + args[0].toLowerCase() + ".IP") != null){
 								boolean IpCheck;
 								try {
-									if (!ReferredByMe.this.getConfig().getString("Players." + player.getName().toLowerCase().toLowerCase() + ".IP").equalsIgnoreCase(ReferredByMe.this.getConfig().getString("Players." + args[0].toLowerCase() + ".IP"))){
+									if (!ReferredByMe.this.getConfig().getString("Players." + player.getName().toLowerCase() + ".IP").equalsIgnoreCase(ReferredByMe.this.getConfig().getString("Players." + args[0].toLowerCase() + ".IP"))){
 										IpCheck = true;
 									}else {
 										IpCheck = false;
@@ -169,12 +169,12 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 									IpCheck = true;
 								}
 								if (IpCheck){
-									ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase().toLowerCase() + ".Referred", true);
-									ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase().toLowerCase() + ".ReferredBy", args[0].toLowerCase());
+									ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase() + ".Referred", true);
+									ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase() + ".ReferredBy", args[0].toLowerCase());
 									int count = ReferredByMe.this.getConfig().getInt("Players." + args[0].toLowerCase() + ".Referrals");
 									ReferredByMe.this.getConfig().set("Players." + args[0].toLowerCase() + ".Referrals", count + 1);
-									if (ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Referrals") == 0){
-										String Referred = ReferredByMe.this.getConfig().getString("Messages.Referred").replace("{player}", player.getName().toLowerCase().toLowerCase());
+									if (ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Referrals") == 0){
+										String Referred = ReferredByMe.this.getConfig().getString("Messages.Referred").replace("{player}", player.getName().toLowerCase());
 										sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + Referred.replace("{target}", args[0].toLowerCase()));
 										int Rank = ReferredByMe.this.getConfig().getInt("Players." + args[0].toLowerCase() + ".Rank");
 										int Rankers = Rank - 1;
@@ -188,7 +188,7 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 										}
 										this.saveConfig();
 										if (target != null) {
-											String YouReferred = ReferredByMe.this.getConfig().getString("Messages.YouReferred").replace("{player}", player.getName().toLowerCase().toLowerCase());
+											String YouReferred = ReferredByMe.this.getConfig().getString("Messages.YouReferred").replace("{player}", player.getName().toLowerCase());
 											target.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + YouReferred.replace("{target}", args[0].toLowerCase()));
 										} for (int i = 0; i < ReferredByMe.this.getConfig().getInt("Rewards.Tiers"); i++){
 											int j = i + 1;
@@ -205,35 +205,35 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 											}
 										} this.saveConfig();
 									} else {
-										String ReferSelf = ReferredByMe.this.getConfig().getString("Messages.ReferSelf").replace("{player}", player.getName().toLowerCase().toLowerCase());
+										String ReferSelf = ReferredByMe.this.getConfig().getString("Messages.ReferSelf").replace("{player}", player.getName().toLowerCase());
 										player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ReferSelf.replace("{target}", args[0].toLowerCase()));
-										ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase().toLowerCase() + ".Referred", false);
-										ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase().toLowerCase() + ".ReferredBy", null);
-										ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase().toLowerCase() + ".Referrals", 0);
+										ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase() + ".Referred", false);
+										ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase() + ".ReferredBy", null);
+										ReferredByMe.this.getConfig().set("Players." + player.getName().toLowerCase() + ".Referrals", 0);
 										this.saveConfig();
 										return false;
 									}
 								} else {
-									String ReferSelf = ReferredByMe.this.getConfig().getString("Messages.ReferSelf").replace("{player}", player.getName().toLowerCase().toLowerCase());
+									String ReferSelf = ReferredByMe.this.getConfig().getString("Messages.ReferSelf").replace("{player}", player.getName().toLowerCase());
 									player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ReferSelf.replace("{target}", args[0].toLowerCase()));
 								}
 							} else {
-								String NotFound = ReferredByMe.this.getConfig().getString("Messages.NotFound").replace("{player}", player.getName().toLowerCase().toLowerCase());
+								String NotFound = ReferredByMe.this.getConfig().getString("Messages.NotFound").replace("{player}", player.getName().toLowerCase());
 								player.sendMessage(ChatColor.RED + "[ReferredByMe] " + NotFound.replace("{target}", args[0].toLowerCase()));
 								return false;
 							}
 						}else {
-							String ReferSelf = ReferredByMe.this.getConfig().getString("Messages.ReferSelf").replace("{player}", player.getName().toLowerCase().toLowerCase());
+							String ReferSelf = ReferredByMe.this.getConfig().getString("Messages.ReferSelf").replace("{player}", player.getName().toLowerCase());
 							player.sendMessage(ChatColor.RED + "[ReferredByMe] " + ReferSelf.replace("{target}", args[0].toLowerCase()));
 							return false;
 						}
 					}else {
-						String ReferLoop = ReferredByMe.this.getConfig().getString("Messages.ReferLoop").replace("{player}", player.getName().toLowerCase().toLowerCase());
+						String ReferLoop = ReferredByMe.this.getConfig().getString("Messages.ReferLoop").replace("{player}", player.getName().toLowerCase());
 						sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ReferLoop.replace("{target}", args[0].toLowerCase()));
 						return false;
 					}
 				}else {
-					String AlreadyReferred =  ReferredByMe.this.getConfig().getString("Messages.AlreadyReferred").replace("{player}", player.getName().toLowerCase().toLowerCase());
+					String AlreadyReferred =  ReferredByMe.this.getConfig().getString("Messages.AlreadyReferred").replace("{player}", player.getName().toLowerCase());
 					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + AlreadyReferred.replace("{target}", args[0].toLowerCase()));
 					return false;
 				}
@@ -261,7 +261,7 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Rank: " + ChatColor.GRAY + ReferredByMe.this.getConfig().getInt("Players." + args[0].toLowerCase() + ".Rank"));
 				} else {
 					Player player = (Player) sender;
-					String NotFound = ReferredByMe.this.getConfig().getString("Messages.NotFound").replace("{player}", player.getName().toLowerCase().toLowerCase());
+					String NotFound = ReferredByMe.this.getConfig().getString("Messages.NotFound").replace("{player}", player.getName().toLowerCase());
 					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + NotFound.replace("{target}", args[0].toLowerCase()));
 				}
 			} else if (args.length == 0){
@@ -270,10 +270,10 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 					return false;
 				} else {
 					Player player = (Player) sender;
-					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Name: " + ChatColor.GRAY + player.getName().toLowerCase().toLowerCase());
-					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Referred By: " + ChatColor.GRAY + ReferredByMe.this.getConfig().getString("Players." + player.getName().toLowerCase().toLowerCase() + ".ReferredBy"));
-					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Referrals: " + ChatColor.GRAY + ReferredByMe.this.getConfig().getString("Players." + player.getName().toLowerCase().toLowerCase() + ".Referrals"));
-					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Rank: " + ChatColor.GRAY + ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Rank"));
+					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Name: " + ChatColor.GRAY + player.getName().toLowerCase());
+					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Referred By: " + ChatColor.GRAY + ReferredByMe.this.getConfig().getString("Players." + player.getName().toLowerCase() + ".ReferredBy"));
+					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Referrals: " + ChatColor.GRAY + ReferredByMe.this.getConfig().getString("Players." + player.getName().toLowerCase() + ".Referrals"));
+					sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Rank: " + ChatColor.GRAY + ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Rank"));
 				}
 			} else if (args.length > 1){
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ReferredByMe.this.getConfig().getString("Messages.arguments"));
@@ -283,10 +283,10 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 		}else if (cmd.getName().toLowerCase().equalsIgnoreCase("referversion")){
 			if (args.length == 0){
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Author: " + ChatColor.GRAY + "LaXynd");
-				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Version: " + ChatColor.YELLOW + "Dev. V0.7");
+				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Version: " + ChatColor.GREEN + "V0.7");
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Build Type: " + ChatColor.YELLOW + "Development");
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "For Minecraft Version: " + ChatColor.GRAY + "1.6.2");
-				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Released: " + ChatColor.RED + "Unreleased/Unofficial");
+				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ChatColor.GREEN + "Released: " + ChatColor.GRAY + "28.07.13");
 			} else {
 				sender.sendMessage(ChatColor.RED + "[ReferredByMe] " + ReferredByMe.this.getConfig().getString("Messages.arguments"));
 			}
@@ -386,7 +386,7 @@ public class ReferredByMe extends JavaPlugin implements Listener{
 					claimed = true;
 					this.saveConfig();
 				}
-			}for (int i = 0; i < ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase().toLowerCase() + ".Claimable.RCount"); i++){
+			}for (int i = 0; i < ReferredByMe.this.getConfig().getInt("Players." + player.getName().toLowerCase() + ".Claimable.RCount"); i++){
 				List<String> CommandL = ReferredByMe.this.getConfig().getStringList("Rewards.Recurring.Command");
 				for(String command:CommandL){
 					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command.replace("{target}", player.getName().toLowerCase()));
