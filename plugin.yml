@@ -1,6 +1,6 @@
 name: ReferredByMe
 main: uk.co.abyxstudioz.referredbyme.ReferredByMe
-version: 0.5
+version: 0.7
 
 commands:
    refer:
@@ -38,3 +38,8 @@ commands:
       usage: /referconfig <path:help> [<Variable> <String:Int:Boolean>]
       permission: ReferredByMe.config
       permission-message: You don't have the permission to execute this command. (ReferredByMe.config)
+   referclaim:
+      description: Claims unclaimed rewards.
+      usage: /referclaim
+      permission: ReferredByMe.claim
+      permission-message: You don't have the permission to execute this command. (ReferredByMe.referclaim)
