@@ -28,11 +28,7 @@ commands:
       usage: /referleader [Rank]
       permission: ReferredByMe.leader
       permission-message: You don't have the permission to execute this command. (ReferredByMe.leader)
-   referrank:
-      description: Checks which user has the highest amount of referrals. Do /referinfo <name> for more information on that user.
-      usage: /referrank [Rank]
-      permission: ReferredByMe.leader
-      permission-message: You don't have the permission to execute this command. (ReferredByMe.leader)
+      aliases: [referrank]
    referconfig:
       description: Checks or edits the config file in-game.
       usage: /referconfig <path:help> [<Variable> <String:Int:Boolean>]
